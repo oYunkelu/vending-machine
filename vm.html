@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    font-size: 24px;
+}
+header {
+    /*background-color: ;*/
+    border-top: 1px solid #444;
+    color: #fff;
+    text-align: center;
+}
+main {
+    position:relative;
+    background-color: crimson;
+    /*background-color: skyblue;*/
+}
+footer {
+    background-color: crimson;
+    /*border-bottom:1px solid #444;
+    text-align: center;*/
+}
+h1 {
+    margin-top: 20px;
+    /*margin-left: 250px; */
+    text-align: center;
+    font-size: 150%;
+    color: orange;
+    background-color: #000;
+}
+  
+h2 {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 150%;
+    color: orange;
+    background-color: #000;
+}
+p {
+    font-size:130%;
+    text-align: center;
+    /*border-bottom:1px solid #fff;*/
+    height:100px;
+}
+
+    
+ul {
+    padding: 0;
+    border-top: 1px solid #000000;
+    display: table;  /* 定義 */
+    table-layout: fixed;
+    width: 100%;
+}
+li {
+    list-style-type:none;
+    display: table-cell;  /* 定義 */
+    /*cursor: pointer;*/
+}
+/*li:hover {
+    background: #0066CC;
+    color:#fff;
+}  */
+button {
+    border-radius: 12px;
+    font-size:100%;
+    margin: 30px;
+    background-color: orange;
+    height: 80px;
+    color: #fff;
+}
+  
+  
+label {
+    padding: 20px;
+  }
+label #toi {
+    
+    background-color: #fff;
+}
+input[type=radio] { 
+    display: none; 
+}
+  
+input[type=radio] + span::before {
+    position: relative;
+    padding: 1.5px;
+	left: -10px;
+	top:4px;
+    content: "●";
+	font-family: "Ionicons";
+	background-color: #fff;
+    color: dimgray;
+	font-size:45px;
+  }
+/*input[type=radio]: + #item::before { 
+    position: relative;
+	color: aliceblue;
+    font-size: 28px;
+  }*/
+input[type=radio]:checked + span::before { 
+    position: relative;
+	left: -10px;
+	top:3px;
+	content: "●";
+	font-family: "Ionicons";
+	background-color: #fff;
+    color: orangered;
+	font-size:45px;
+  }
+/*input[type=radio]:checked + #item::before { 
+    position: relative;
+	color: orange;
+	
+  }*/
+ 
+  
+.area {
+    margin: 20px;
+    padding-left: 25px;
+    background-color: #fff;
+  }
+#item {
+    /*position: absolute;*/
+    color: orangered;
+    font-weight: bold;
+    font-size: 26px;
+    background-color: #fff;
+  }
+
+    
+.area2 {
+    margin: 20px;
+    padding-left: 10px;
+    background-color: #fff;    
+}
+/*.area3 {
+    margin: 40px;
+    padding-left: 25px;
+    background-color: #fff;    
+}*/
+  
+#demo3 {
+    float: left;
+    position: relative;
+    margin-left: 20px;
+    width: 160;
+    height: 200;
+}
+#text {
+    float: left;
+    position: relative;
+    margin-top: 20px;
+    margin-left: 380px; 
+    font-size: 60px;
+    font-weight: bold;
+    background-color: orange;
+  }
+    
+#money {
+    color: orangered;
+    font-weight: bold;
+    font-size: 28px;
+    
+    background-color: #fff;
+  }
+#text2 {
+    float: left;
+    margin-top: 40px;
+    margin-left: 150px;
+    font-size: 50px;
+}
+#tounyuu {
+    margin-top: 200px;
+    margin-left: 100px;
+  }
+#coment1 {
+    float: left;
+    margin-top: 30px;
+    margin-left: 180px;
+    font-size: 40px;
+    color: orangered;
+  }
+  
+#price {
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+    height:100px; 
+    background-color: orangered;
+    /*opacity: 0.6;*/
+    border-radius: 10px 10px 10px 10px;
+}
+#back {
+    float: left;
+    margin-top: 40px;
+    margin-left: 400px;
+    /*padding: 20px;
+    font-size:110%;
+    text-align: center;*/
+    background-color: springgreen;
+    /*opacity: 0.6;*/
+    /*border-radius: 10px 10px 10px 10px;*/
+}
+ 
+#oturi {
+    float: left;
+    margin-top: 30px;
+    margin-left: 400px;
+    /*font-size: 30px;  */  
+    }
+/*#oturi {
+    /*padding: 20px;*/
+    /*position: relative;
+    margin-top: 80px;
+    margin-left: 100px;
+    font-size: 30px;
+    /*text-align: center;
+}*/
+#coment2 {
+    /*float: left;*/
+    margin-top: 20px;
+    margin-left: 250px;
+    padding-bottom: 10px;
+    font-size: 30px;
+    color: #000;
+
+  }
+    #coment3 {
+    /*float: left;*/
+    margin-top: 20px;
+    margin-left: 250px;
+    padding-bottom: 10px;
+    font-size: 30px;
+    color: #000;
+
+  }
+
+</style>
+
+<title>自動販売機</title>
+<script>
+$(function(){
+  "use strict"; 
+  //let quest = ["好きなドリンクを選んでね！","コインを投入してね"];
+  //let product = ["緑茶","コーラ","コーヒー","オレンジジュース","水"];
+  
+  /*let img = ['images/tea.jpg','images/cora.jpg','images/coffee.jpg','images/orangejuice.jpg','images/water.jpg'];*/
+ 
+  
+　let price = [150,160,180,140,100];
+  
+  let coin = [10,50,100,500,1000];
+  
+  let money_sum = 0;
+  let money_oturi;
+  let result = 0;
+  let result2 = 0;
+  let images;
+
+  /*for(let i=0; i<2; i++) {
+    $("#quest").html(quest[i]);
+  }*/
+    $("#parent2").hide(); 
+    $("#coment1").html("投入金額は"+(money_sum)+"円です");
+  
+  $('input[name="toi"]').change(function() {
+    //$('[name=toi]')
+      $('label')
+      .filter(':has(input:radio:checked)').css("background-Color","#ffeff6")//#ffeff6
+      .end().filter(':not(:has(input:radio:checked))').css("background-Color","");//
+    
+    for(let i=0; i<5; i++) {
+      if ($(this).val()==price[i]) {
+        result = Number($(this).val());
+      //let result = $(this).val();
+    //let str = Number($(this).val());
+      }
+       if($(this).val()==price[0]) {
+          $("#demo3").html('<img src="images/tea.jpg" alt="ドリンク1" width="200" height="550">');
+       }
+      if($(this).val()==price[1]) {
+          $("#demo3").html('<img src="images/cora.jpg" alt="ドリンク2" width="200" height="500">');
+      }
+      if($(this).val()==price[2]) {
+          $("#demo3").html('<img src="images/coffee.jpg" alt="ドリンク3" width="230" height="500">');
+      }
+      if($(this).val()==price[3]) {
+          $("#demo3").html('<img src="images/orangejuice.jpg" alt="ドリンク4" width="200" height="550">');
+      }
+      if($(this).val()==price[4]) {
+          $("#demo3").html('<img src="images/water.jpg" alt="ドリンク5" width="200" height="550">');
+      }
+    }
+  });
+  
+  
+    $("#price").on("click",function() { 
+      $("#parent2").show(4000);
+      
+      $("#parent").hide(); 
+      $("#text").html((result)+ "円");
+    
+  
+ 
+  $('input[name="money"]').change(function() {
+    //$('[name=toi]')
+      $('label')
+      .filter(':has(input:radio:checked)').css("background-Color","#ffeff6")//#ffeff6
+      .end().filter(':not(:has(input:radio:checked))').css("background-Color","");//
+    //let str = $(this).val();
+    for(let i=0; i<5; i++) {
+    if ($(this).val()==coin[i]) {
+      let result2 = Number($(this).val());
+      //let money_sum = Number(str);
+      if ($.isNumeric(result2)) {
+      money_sum = (result2) + money_sum;
+      } 
+      }
+      //$("#text2").html(money_sum);
+      $("#coment1").html("投入金額は"+(money_sum)+"円です");
+      /*$("#oturi").on("click",function() {
+    　money_oturi = (money_sum) - (result);
+      //$("#oturi").html(money_oturi);
+      $("#coment2").html(money_oturi);
+      });*/
+    }
+   });
+   let i =0;
+   $("#back").on('click', function() {
+      money_sum　= 0;
+      //$("#text2").html("投入金額");
+     $("#coment1").html("投入金額は"+(money_sum)+"円です");
+   });   
+      
+    $("#oturi").on("click",function() {
+    　money_oturi = (money_sum) - (result);
+      //$("#oturi").html(money_oturi);
+      $("#coment2").html("お釣りは"+(money_oturi)+"円です");
+  });
+  });
+   money_sum = money_sum/2;
+    
+    
+  $("#button").on("click", function() {
+    $("#parent").show(4000); 
+    /*result2 = (Number($(this).val())/2);*/
+    $("input").prop("checked", false);
+     result = (result)/2;
+   /* $("#text").html("金額は");*/
+    $("#text2").html("投入金額");
+    money_sum　= 0;
+    /*let result2 = (Number($('input[name="money"]').val())/2);*/
+    /*$.isNumeric(result2) =  $.isNumeric((result2)/2);
+    /*coin[0]=(coin[0])/2;*/
+    $("#coment1").html("投入金額は"+(money_sum)+"円です");
+
+    /*money_sum = (money_sum)/2;*/
+    $("#oturi").html("お釣り");
+    $("#coment2").html("お釣りは"+(money_oturi)+"円です");  
+    $("#parent2").hide();
+  });
+
+});
+
+   
+//});
+  
+  
+  //ここまでが記述領域［END］
+</script>
+</head>
+<body>
+<header>
+</header>
+<main>
+  <div id = "parent">
+  <h1>好きなドリンクを選んでね！</h1>
+  
+  <div class="area">
+  <div style="position: relative; display:inline-block;">
+  <img id="tea" src="images/tea.jpg" alt="" width="175" height="450">
+  <img id="cora" src="images/cora.jpg" alt="" width="175" height="450">
+  <img id="coffee" src="images/coffee.jpg" alt="" width="175" height="450">
+  <img id="orangejuice" src="images/orangejuice.jpg" alt="" width="175" height="450">
+  <img id="water" src="images/water.jpg" alt="" width="175" height="450">
+  </div> 
+  <p>
+    <label><input type="radio" name="toi" value="150"><span id="item">150円</span></label>
+    <label><input type="radio" name="toi" value="160"><span id="item">160円</span></label>
+      <label><input type="radio" name="toi" value="180"><span id="item">180円</span></label>
+    <label><input type="radio" name="toi" value="140"><span id="item">140円</span></label>
+    <label><input type="radio" name="toi" value="100"><span id="item">100円</span></label>
+  </p>
+</div>
+  
+  <p>
+  <button id="price"><span id="price">決定！</span></button>
+  </p>
+  </div>
+    
+  <div id = "parent2">
+  <h2>コインを投入してね</h2>
+
+<div class="area2">
+ 
+
+  <p>
+    <span id="text"></span>
+  </p>
+ <p>
+    <label><input type="radio" name="money" value="10"><span id="money">10円</span></label>
+    <label><input type="radio" name="money" value="50"><span id="money">50円</span></label>
+      <label><input type="radio" name="money" value="100"><span id="money">100円</span></label>
+    <label><input type="radio" name="money" value="500"><span id="money">500円</span></label>
+    <label><input type="radio" name="money" value="1000"><span id="money">1000円</span></label>
+  </p>
+    <!--<input type="button" id="coin" value=""/>-->
+    <p id="demo3">demo3</p>
+  
+    <p>
+      <button id="text2"><span id="text2_">投入金額</span></button></p>
+  <p><span id="coment1"></span></p>
+  
+ <p>
+    <button id="back"><span id="back_">戻す</span></button>
+  </p>
+    <!--<p><span id="coment1"></span></p>-->
+ 
+
+  <p>
+    <button id="oturi">お会計をします</button>
+  </p>
+    <p><span id="coment2"></span></p>
+
+</div>
+  <p>
+    <button id="button"><span id="restart">restart!
+      </span></button>
+  </p>
+     
+ 
+ 
+</div>
+  
+  
+  <!--<p>
+    <button id="next">コイン入力へ</button>-->
+  
+</main>
+<footer id="answer"></footer>
+</body>
+</html>
+
